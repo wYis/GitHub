@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video step2</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+</head>
+
+<body>
+<div style="width: 500px;height:300px;" id="div">
+    <video id="myVideo" controls preload="auto" width="500px" height="300px" 
+    poster="" src="./video/aaaa.mp4">
+    </video>
+</div>
+<p>如果您点击我，我会消失。</p>
+<p>点击我，我会消失。</p>
+<p>也要点击我哦。</p>
+<script>
+var myVideo = document.getElementById('myVideo')//获取video元素
+    ,tol = 0; //总时长
+myVideo.addEventListener("loadedmetadata", function(){
+    tol = myVideo.duration;//获取总时长
+});
+
+//播放
+function play(){ 
+    myVideo.play();
+}
+
+//暂停
+function pause(){ 
+    myVideo.pause();
+}
+
+//鼠标点击视频播放与暂定
+
+var clickNumber = 0;
+$(document).ready(function(){
+  $("#div").click(function(){
+    if(clickNumber %2==0){
+		$(this).play();
+    }else{
+		$(this).pause();
+    }
+    clickNumber ++;
+});
+
+//播放时间点更新时
+myVideo.addEventListener("timeupdate", function(){
+    var currentTime = myVideo.currentTime;//获取当前播放时间
+    console.log(currentTime);//在调试器中打印
+});
+
+//设置播放点
+function playBySeconds(num){ 
+    myVideo.currentTime = num;
+}
+
+//音量改变时
+myVideo.addEventListener("volumechange", function(){
+    var volume = myVideo.volume;//获取当前音量
+    console.log(volume);//在调试器中打印
+});
+
+//设置音量
+function setVol(num){ 
+    myVideo.volume = num;
+}
+$(document).ready(function(){
+$("li").click(function(event){
+        $(this).toggleClass("show");
+        $(this).find("div").toggle();
+        $(this).siblings().find("div").hide();
+        $(this).removeClass("show");
+    });
+
+//http://www.w3school.com.cn/tags/event_onclick.asp
+</script>
+<script type="text/javascript" src="http://www.w3school.com.cn/jquery/jquery-1.11.1.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("p").click(function(){
+    $(this).play();
+  });
+});
+</script>
+
+
+<script type="text/javascript" src="./jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+/*jquery函数*/
+$.extend({'fun1':function(){
+$("div").css("color", "red"); 
+}});    
+/*jquery函数调用方式*/  
+$("button").click(function(){
+  $.fun1();      
+});  
+})
+</script>
+<script type="text/javascript">
+/*jquery函数*/
+function fun1(){
+   $("div").css("color", "red"); 
+};
+$(document).ready(function(){    
+/*jquery函数调用方式*/  
+$("div").click(function(){
+  fun1();      
+});  
+})
+</script>
+
+<ul>
+    <li><h4>123</h4><div class="hidden">aaa</div></li>
+    <li><h4>456</h4><div class="hidden">bbb</div></li>
+</ul>
+<script type="text/javascript">
+    $("li").click(function(event){
+        $(this).find("div").toggle();
+        $(this).siblings().find("div").hide();
+    })
+</script>
+
+<script type="text/javascript" src="/jquery/jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".btn1").click(function(){
+  $("p").hide();
+  });
+  $(".btn2").click(function(){
+  $("p").show();
+  });
+});
+</script>
+</head>
+<body>
+<p>This is a paragraph.</p>
+<button class="btn1">Hide</button>
+<button class="btn2">Show</button>
+
+<div id="box">
+<video src="./video/aaaa.mp4" controls="controls" id="sp">
+</video>
+</div>
+<script>
+function showb(){
+var video = $("#sp")[0];  
+$("#box").show();
+video.play();
+}
+function hideb(){
+var video = $("#sp")[0];  
+$("#box").hide();
+video.pause();
+}
+</script>
+<table>
+<tr>
+<td>我们的<a>点击</a></td>
+</tr>
+</table>
+<script>
+
+$('#sortable_table tr').not('#Tr1').click(function() { 
+$(this).find('td').each(function(i) { 
+if (i == 0) { 
+var text = $(this).text(); 
+} 
+}); 
+});
+</script>
+</body>
+</html>
